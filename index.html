@@ -10,16 +10,16 @@
 <style>
 :root{
   --primary:#7c3aed;
-  --dark:#0f0f0f;
+  --bg:#0f0f0f;
   --card:#1a1a1a;
   --text:#ffffff;
   --navbg:rgba(0,0,0,0.85);
   --footer:#111;
 }
 
-/* LIGHT MODE VARIABLES */
+/* LIGHT MODE */
 body.light-mode{
-  --dark:#ffffff;
+  --bg:#ffffff;
   --card:#f2f2f2;
   --text:#111111;
   --navbg:rgba(255,255,255,0.9);
@@ -35,7 +35,7 @@ body.light-mode{
 
 body{
   font-family:'Inter',sans-serif;
-  background:var(--dark);
+  background:var(--bg);
   color:var(--text);
   overflow-x:hidden;
 }
@@ -50,7 +50,7 @@ h1,h2,h3{
   margin:auto;
 }
 
-/* ================= NAV ================= */
+/* NAV */
 nav{
   position:fixed;
   width:100%;
@@ -94,12 +94,12 @@ nav{
 }
 
 .theme-toggle{
-  margin-left:15px;
+  margin-right:15px;
   cursor:pointer;
   font-size:20px;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 .hero{
   height:100vh;
   background:url("https://images.unsplash.com/photo-1514525253161-7a46d19cd819") center/cover no-repeat;
@@ -155,7 +155,7 @@ body.light-mode .hero::after{
   background:#5b21b6;
 }
 
-/* ================= SECTIONS ================= */
+/* SECTIONS */
 .section{
   padding:clamp(60px,8vw,120px) 0;
 }
@@ -166,7 +166,6 @@ body.light-mode .hero::after{
   margin-bottom:50px;
 }
 
-/* ================= GRIDS ================= */
 .about-grid,
 .programs-grid,
 .pricing-grid{
@@ -195,14 +194,14 @@ body.light-mode .hero::after{
   margin:10px 0;
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 .footer{
   text-align:center;
   padding:40px 20px;
   background:var(--footer);
 }
 
-/* ================= MOBILE ================= */
+/* RESPONSIVE */
 @media(max-width:900px){
   .about-grid{
     grid-template-columns:1fr;
@@ -239,7 +238,7 @@ body.light-mode .hero::after{
 <nav>
   <div class="container nav-container">
     <div class="logo">
-      <img src="images/logo-dark.png" id="logoImg" alt="Hip Hop Harmony Logo">
+      <img src="./images/logo-white.png" id="logoImg" alt="Hip Hop Harmony Logo">
     </div>
 
     <ul class="nav-links" id="navLinks">
@@ -334,7 +333,9 @@ const logo = document.getElementById("logoImg");
 /* Load saved theme */
 if(localStorage.getItem("theme") === "light"){
   document.body.classList.add("light-mode");
-  logo.src = "images/logo-light.png";
+  logo.src = "./images/logo-black.png";
+} else {
+  logo.src = "./images/logo-white.png";
 }
 
 /* Toggle Theme */
@@ -342,10 +343,10 @@ function toggleTheme(){
   document.body.classList.toggle("light-mode");
 
   if(document.body.classList.contains("light-mode")){
-    logo.src = "images/logo-light.png";
+    logo.src = "./images/logo-black.png";
     localStorage.setItem("theme","light");
   } else {
-    logo.src = "images/logo-dark.png";
+    logo.src = "./images/logo-white.png";
     localStorage.setItem("theme","dark");
   }
 }
