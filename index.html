@@ -12,18 +12,31 @@
   --primary:#7c3aed;
   --dark:#0f0f0f;
   --card:#1a1a1a;
+  --text:#ffffff;
+  --navbg:rgba(0,0,0,0.85);
+  --footer:#111;
+}
+
+/* LIGHT MODE VARIABLES */
+body.light-mode{
+  --dark:#ffffff;
+  --card:#f2f2f2;
+  --text:#111111;
+  --navbg:rgba(255,255,255,0.9);
+  --footer:#eaeaea;
 }
 
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
+  transition:background 0.3s,color 0.3s;
 }
 
 body{
   font-family:'Inter',sans-serif;
   background:var(--dark);
-  color:#fff;
+  color:var(--text);
   overflow-x:hidden;
 }
 
@@ -42,7 +55,7 @@ nav{
   position:fixed;
   width:100%;
   top:0;
-  background:rgba(0,0,0,0.85);
+  background:var(--navbg);
   backdrop-filter:blur(10px);
   z-index:1000;
 }
@@ -54,11 +67,9 @@ nav{
   padding:18px 0;
 }
 
-.logo{
-  font-weight:900;
-  font-size:22px;
+.logo img{
+  height:50px;
 }
-.logo span{color:var(--primary)}
 
 .nav-links{
   display:flex;
@@ -67,10 +78,9 @@ nav{
 }
 
 .nav-links a{
-  color:white;
+  color:var(--text);
   text-decoration:none;
   font-weight:500;
-  transition:.3s;
 }
 
 .nav-links a:hover{
@@ -81,6 +91,12 @@ nav{
   display:none;
   font-size:26px;
   cursor:pointer;
+}
+
+.theme-toggle{
+  margin-left:15px;
+  cursor:pointer;
+  font-size:20px;
 }
 
 /* ================= HERO ================= */
@@ -99,7 +115,11 @@ nav{
   content:"";
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,0.7);
+  background:rgba(0,0,0,0.6);
+}
+
+body.light-mode .hero::after{
+  background:rgba(255,255,255,0.5);
 }
 
 .hero-content{
@@ -110,7 +130,6 @@ nav{
 
 .hero-title{
   font-size:clamp(38px,6vw,75px);
-  line-height:1.1;
 }
 
 .hero-title span{
@@ -119,7 +138,6 @@ nav{
 
 .hero-subtitle{
   margin:20px 0 30px;
-  color:#ddd;
   font-size:clamp(14px,2vw,18px);
 }
 
@@ -131,12 +149,10 @@ nav{
   font-weight:600;
   border-radius:6px;
   cursor:pointer;
-  transition:.3s;
 }
 
 .btn:hover{
   background:#5b21b6;
-  transform:scale(1.05);
 }
 
 /* ================= SECTIONS ================= */
@@ -171,12 +187,6 @@ nav{
   background:var(--card);
   padding:30px;
   border-radius:14px;
-  transition:.4s;
-}
-
-.card:hover{
-  transform:translateY(-8px);
-  background:#222;
 }
 
 .price{
@@ -189,8 +199,7 @@ nav{
 .footer{
   text-align:center;
   padding:40px 20px;
-  background:#111;
-  color:#888;
+  background:var(--footer);
 }
 
 /* ================= MOBILE ================= */
@@ -207,7 +216,7 @@ nav{
     top:70px;
     right:-100%;
     flex-direction:column;
-    background:#111;
+    background:var(--navbg);
     width:220px;
     padding:25px;
     transition:.3s;
@@ -222,20 +231,6 @@ nav{
     display:block;
   }
 }
-
-@media(max-width:480px){
-  .hero{
-    padding:0 15px;
-  }
-
-  .btn{
-    width:100%;
-  }
-
-  .card{
-    padding:22px;
-  }
-}
 </style>
 </head>
 
@@ -244,13 +239,19 @@ nav{
 <nav>
   <div class="container nav-container">
     <div class="logo">
-  <img src="images/logo-dark.png" id="logoImg" alt="Hip Hop Harmony Logo"></div>
+      <img src="images/logo-dark.png" id="logoImg" alt="Hip Hop Harmony Logo">
+    </div>
+
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#programs">Programs</a></li>
       <li><a href="#pricing">Pricing</a></li>
     </ul>
-    <div class="mobile-btn" onclick="toggleMenu()">☰</div>
+
+    <div>
+      <span class="theme-toggle" onclick="toggleTheme()">🌙</span>
+      <span class="mobile-btn" onclick="toggleMenu()">☰</span>
+    </div>
   </div>
 </nav>
 
@@ -326,6 +327,27 @@ nav{
 <script>
 function toggleMenu(){
   document.getElementById("navLinks").classList.toggle("active");
+}
+
+const logo = document.getElementById("logoImg");
+
+/* Load saved theme */
+if(localStorage.getItem("theme") === "light"){
+  document.body.classList.add("light-mode");
+  logo.src = "images/logo-light.png";
+}
+
+/* Toggle Theme */
+function toggleTheme(){
+  document.body.classList.toggle("light-mode");
+
+  if(document.body.classList.contains("light-mode")){
+    logo.src = "images/logo-light.png";
+    localStorage.setItem("theme","light");
+  } else {
+    logo.src = "images/logo-dark.png";
+    localStorage.setItem("theme","dark");
+  }
 }
 </script>
 
