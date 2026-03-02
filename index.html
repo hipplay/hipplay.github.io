@@ -237,8 +237,10 @@ body.light-mode .hero::after{
 
 <nav>
   <div class="container nav-container">
+
+    <!-- LOGO (ROOT FOLDER) -->
     <div class="logo">
-      <img src="./images/logo-white.png" id="logoImg" alt="Hip Hop Harmony Logo">
+      <img src="./logo-white.png" id="logoImg" alt="Hip Hop Harmony Logo">
     </div>
 
     <ul class="nav-links" id="navLinks">
@@ -251,6 +253,7 @@ body.light-mode .hero::after{
       <span class="theme-toggle" onclick="toggleTheme()">🌙</span>
       <span class="mobile-btn" onclick="toggleMenu()">☰</span>
     </div>
+
   </div>
 </nav>
 
@@ -333,9 +336,9 @@ const logo = document.getElementById("logoImg");
 /* Load saved theme */
 if(localStorage.getItem("theme") === "light"){
   document.body.classList.add("light-mode");
-  logo.src = "./images/logo-black.png";
+  logo.src = "./logo-black.png";
 } else {
-  logo.src = "./images/logo-white.png";
+  logo.src = "./logo-white.png";
 }
 
 /* Toggle Theme */
@@ -343,10 +346,10 @@ function toggleTheme(){
   document.body.classList.toggle("light-mode");
 
   if(document.body.classList.contains("light-mode")){
-    logo.src = "./images/logo-black.png";
+    logo.src = "./logo-black.png";
     localStorage.setItem("theme","light");
   } else {
-    logo.src = "./images/logo-white.png";
+    logo.src = "./logo-white.png";
     localStorage.setItem("theme","dark");
   }
 }
