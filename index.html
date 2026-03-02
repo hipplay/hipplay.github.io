@@ -1,290 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hip Hop Harmony</title>
-    <meta name="description" content="Join The Movement at Hip Hop Harmony. Premium hip hop dance studio offering classes for all levels.">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hip Hop Harmony</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+body{
+  background:#0f0f0f;
+  color:white;
+  scroll-behavior:smooth;
+  overflow-x:hidden;
+}
+
+h1,h2,h3{
+  font-family:'Outfit',sans-serif;
+}
+
+a{text-decoration:none;color:white}
+
+.container{
+  width:90%;
+  max-width:1200px;
+  margin:auto;
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  width:100%;
+  top:0;
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+.nav-container{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 0;
+}
+.logo{
+  font-weight:900;
+  font-size:22px;
+}
+.logo span{
+  color:#7c3aed;
+}
+.nav-links{
+  display:flex;
+  gap:25px;
+  list-style:none;
+}
+.nav-links a:hover{
+  color:#7c3aed;
+}
+
+.mobile-btn{
+  display:none;
+  font-size:24px;
+  cursor:pointer;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  background:url("https://images.unsplash.com/photo-1514525253161-7a46d19cd819") center/cover no-repeat;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+}
+.hero-content{
+  position:relative;
+  z-index:1;
+  max-width:700px;
+}
+
+.hero-title{
+  font-size:70px;
+  line-height:1.1;
+}
+.hero-title span{
+  color:#7c3aed;
+}
+.hero-subtitle{
+  margin:20px 0;
+  color:#ddd;
+  font-size:18px;
+}
+.btn{
+  padding:14px 32px;
+  background:#7c3aed;
+  border:none;
+  cursor:pointer;
+  border-radius:6px;
+  font-weight:600;
+  transition:.3s;
+}
+.btn:hover{
+  background:#5b21b6;
+  transform:scale(1.05);
+}
+
+/* SECTION */
+.section{
+  padding:100px 0;
+}
+.section-title{
+  font-size:42px;
+  margin-bottom:20px;
+  text-align:center;
+}
+
+/* GRID */
+.about-grid,
+.programs-grid,
+.pricing-grid{
+  display:grid;
+  gap:30px;
+}
+.about-grid{
+  grid-template-columns:1fr 1fr;
+}
+.programs-grid,
+.pricing-grid{
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+}
+
+.card{
+  background:#1a1a1a;
+  padding:30px;
+  border-radius:12px;
+  transition:.4s;
+  opacity:0;
+  transform:translateY(40px);
+}
+.card.show{
+  opacity:1;
+  transform:translateY(0);
+}
+.card:hover{
+  transform:translateY(-8px);
+  background:#222;
+}
+
+.price{
+  font-size:32px;
+  margin:10px 0;
+  color:#7c3aed;
+}
+
+.footer{
+  background:#111;
+  padding:50px 0;
+  text-align:center;
+  color:#888;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .about-grid{
+    grid-template-columns:1fr;
+  }
+  .hero-title{
+    font-size:45px;
+  }
+  .nav-links{
+    position:absolute;
+    top:70px;
+    right:-100%;
+    flex-direction:column;
+    background:#111;
+    width:200px;
+    padding:20px;
+    transition:.3s;
+  }
+  .nav-links.active{
+    right:0;
+  }
+  .mobile-btn{
+    display:block;
+  }
+}
+</style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">HH<span>Harmony</span></a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#programs">Programs</a></li>
-                <li><a href="#schedule">Schedule</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <a href="#pricing" class="btn btn-nav">Join Now</a>
-            <button class="mobile-menu-btn" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+<nav>
+  <div class="container nav-container">
+    <div class="logo">HH<span>Harmony</span></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <div class="mobile-btn" onclick="toggleMenu()">☰</div>
+  </div>
+</nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content reveal fade-up">
-            <h1 class="hero-title">HIP HOP<br><span class="text-gradient">HARMONY</span></h1>
-            <p class="hero-subtitle">Feel the beat. Master the rhythm. Own the floor.</p>
-            <a href="#pricing" class="btn btn-primary btn-lg">Join The Movement</a>
-        </div>
-    </section>
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">HIP HOP<br><span>HARMONY</span></h1>
+    <p class="hero-subtitle">Feel the beat. Master the rhythm. Own the floor.</p>
+    <a href="#pricing"><button class="btn">Join The Movement</button></a>
+  </div>
+</section>
 
-    <!-- About Section -->
-    <section id="about" class="about section">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-text reveal slide-right">
-                    <h2 class="section-title">The <span class="text-blue">Movement</span></h2>
-                    <p>Hip Hop Harmony isn't just a dance studio—it's a sanctuary for rhythm, culture, and expression. Born in the heart of the city, we bring together passionate instructors and eager learners to celebrate the art of hip hop.</p>
-                    <p>Whether you're taking your first step or refining your professional routine, our state-of-the-art facility and welcoming community provide the perfect environment to elevate your skills.</p>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <span class="stat-number">15+</span>
-                            <span class="stat-label">Instructors</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">50+</span>
-                            <span class="stat-label">Weekly Classes</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">10k+</span>
-                            <span class="stat-label">Students Taught</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image reveal slide-left">
-                    <div class="img-wrapper glow-border">
-                        <img src="images/about_dance_1772397949416.png" alt="Dancers practicing in the studio">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="about" class="section">
+  <div class="container">
+    <h2 class="section-title">The Movement</h2>
+    <div class="about-grid">
+      <div class="card">
+        <p>We build confidence, skill, and community through hip hop culture.</p>
+      </div>
+      <div class="card">
+        <p>15+ instructors • 50+ weekly classes • 10k+ students trained</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Programs Section -->
-    <section id="programs" class="programs section bg-darker">
-        <div class="container">
-            <div class="section-header reveal fade-up">
-                <h2 class="section-title">Our <span class="text-purple">Programs</span></h2>
-                <p>Classes designed for every age and skill level.</p>
-            </div>
-            
-            <div class="programs-grid">
-                <div class="program-card reveal fade-up" style="--delay: 0.1s">
-                    <div class="card-img-container">
-                        <div class="card-gradient-bg"></div>
-                        <div class="card-overlay"></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Beginner Foundations</h3>
-                        <p>Learn the core grooves, bounces, and isolations. Perfect for those with zero dance experience.</p>
-                        <a href="#schedule" class="link-arrow">View Schedule →</a>
-                    </div>
-                </div>
+<section id="programs" class="section">
+  <div class="container">
+    <h2 class="section-title">Programs</h2>
+    <div class="programs-grid">
+      <div class="card">
+        <h3>Beginner Foundations</h3>
+        <p>Perfect for first-time dancers.</p>
+      </div>
+      <div class="card">
+        <h3>Advanced Choreography</h3>
+        <p>Performance-level routines.</p>
+      </div>
+      <div class="card">
+        <h3>Youth & Kids</h3>
+        <p>Fun energetic classes for kids.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <div class="program-card reveal fade-up" style="--delay: 0.2s">
-                    <div class="card-img-container">
-                        <img src="images/program_advanced_1772397980124.png" alt="Advanced Choreography">
-                        <div class="card-overlay"></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Advanced Choreography</h3>
-                        <p>Intricate routines, musicality training, and performance preparation for experienced dancers.</p>
-                        <a href="#schedule" class="link-arrow">View Schedule →</a>
-                    </div>
-                </div>
+<section id="pricing" class="section">
+  <div class="container">
+    <h2 class="section-title">Membership</h2>
+    <div class="pricing-grid">
+      <div class="card">
+        <h3>Drop In</h3>
+        <div class="price">$25</div>
+        <p>Single class access</p>
+      </div>
+      <div class="card">
+        <h3>Monthly</h3>
+        <div class="price">$149</div>
+        <p>Unlimited classes</p>
+      </div>
+      <div class="card">
+        <h3>Annual</h3>
+        <div class="price">$1200</div>
+        <p>Best value package</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <div class="program-card reveal fade-up" style="--delay: 0.3s">
-                    <div class="card-img-container">
-                        <img src="images/program_kids_1772397965731.png" alt="Youth & Kids">
-                        <div class="card-overlay"></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Youth & Kids</h3>
-                        <p>High-energy, fun-focused classes that build confidence, coordination, and rhythm for ages 6-14.</p>
-                        <a href="#schedule" class="link-arrow">View Schedule →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<footer class="footer">
+  © 2026 Hip Hop Harmony. All rights reserved.
+</footer>
 
-    <!-- Schedule Section -->
-    <section id="schedule" class="schedule section">
-        <div class="container">
-            <div class="section-header reveal fade-up">
-                <h2 class="section-title">Class <span class="text-blue">Schedule</span></h2>
-                <p>Find the perfect time to drop in and vibe with us.</p>
-            </div>
+<script>
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("active");
+}
 
-            <div class="schedule-container reveal fade-up">
-                <div class="days-filter">
-                    <button class="day-btn active">Mon</button>
-                    <button class="day-btn">Tue</button>
-                    <button class="day-btn">Wed</button>
-                    <button class="day-btn">Thu</button>
-                    <button class="day-btn">Fri</button>
-                    <button class="day-btn">Sat</button>
-                    <button class="day-btn">Sun</button>
-                </div>
-                
-                <div class="schedule-list">
-                    <div class="schedule-item">
-                        <div class="time">05:00 PM - 06:00 PM</div>
-                        <div class="class-info">
-                            <h4>Kids Foundation</h4>
-                            <p>Instructor: Marcus J.</p>
-                        </div>
-                        <div class="level level-beginner">Beginner</div>
-                        <button class="btn btn-outline btn-sm">Book</button>
-                    </div>
-                    <div class="schedule-item">
-                        <div class="time">06:30 PM - 07:45 PM</div>
-                        <div class="class-info">
-                            <h4>Urban Choreography</h4>
-                            <p>Instructor: Sarah L.</p>
-                        </div>
-                        <div class="level level-intermediate">Intermediate</div>
-                        <button class="btn btn-outline btn-sm">Book</button>
-                    </div>
-                    <div class="schedule-item">
-                        <div class="time">08:00 PM - 09:30 PM</div>
-                        <div class="class-info">
-                            <h4>Advanced Masterclass</h4>
-                            <p>Instructor: DJ Killa</p>
-                        </div>
-                        <div class="level level-advanced">Advanced</div>
-                        <button class="btn btn-outline btn-sm">Book</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+/* Scroll Reveal Animation */
+const cards = document.querySelectorAll(".card");
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing section bg-darker">
-        <div class="container">
-            <div class="section-header reveal fade-up">
-                <h2 class="section-title">Membership <span class="text-purple">Tiers</span></h2>
-                <p>Choose how you want to move.</p>
-            </div>
+window.addEventListener("scroll", ()=>{
+  const trigger = window.innerHeight * 0.85;
+  cards.forEach(card=>{
+    const top = card.getBoundingClientRect().top;
+    if(top < trigger){
+      card.classList.add("show");
+    }
+  });
+});
+</script>
 
-            <div class="pricing-grid">
-                <!-- Drop-in -->
-                <div class="pricing-card reveal slide-up" style="--delay: 0.1s">
-                    <div class="card-header">
-                        <h3>Drop-In</h3>
-                        <div class="price">$25<span>/class</span></div>
-                    </div>
-                    <ul class="features">
-                        <li>Access to any single class</li>
-                        <li>Valid for 30 days</li>
-                        <li>No commitment</li>
-                        <li class="disabled">Priority booking</li>
-                        <li class="disabled">Masterclass discounts</li>
-                    </ul>
-                    <a href="#" class="btn btn-outline btn-full">Select Plan</a>
-                </div>
-
-                <!-- Monthly (Popular) -->
-                <div class="pricing-card popular reveal slide-up" style="--delay: 0.2s">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="card-header">
-                        <h3>Unlimited Monthly</h3>
-                        <div class="price">$149<span>/month</span></div>
-                    </div>
-                    <ul class="features">
-                        <li>Unlimited classes</li>
-                        <li>Priority booking</li>
-                        <li>15% off Masterclasses</li>
-                        <li>Free studio rental (2hrs/mo)</li>
-                        <li>Cancel anytime</li>
-                    </ul>
-                    <a href="#" class="btn btn-primary btn-full glow-btn">Select Plan</a>
-                </div>
-
-                <!-- Annual -->
-                <div class="pricing-card reveal slide-up" style="--delay: 0.3s">
-                    <div class="card-header">
-                        <h3>Annual Pass</h3>
-                        <div class="price">$1200<span>/year</span></div>
-                    </div>
-                    <ul class="features">
-                        <li>All Monthly benefits</li>
-                        <li>2 Free Masterclasses</li>
-                        <li>Exclusive merch pack</li>
-                        <li>Guest passes (3/year)</li>
-                        <li>Save $588 annually</li>
-                    </ul>
-                    <a href="#" class="btn btn-outline btn-full">Select Plan</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section (Simplified Masonry) -->
-    <section id="gallery" class="gallery section">
-        <!-- We use a CSS grid for masonry-like feel -->
-        <div class="container-fluid">
-            <div class="gallery-grid reveal fade-up">
-                <img src="images/hero_bg_1772397935199.png" alt="Gallery 1" class="gallery-img">
-                <img src="images/about_dance_1772397949416.png" alt="Gallery 2" class="gallery-img">
-                <img src="images/program_advanced_1772397980124.png" alt="Gallery 3" class="gallery-img">
-                <img src="images/program_kids_1772397965731.png" alt="Gallery 4" class="gallery-img">
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact & Footer -->
-    <footer id="contact" class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h2>HH<span>Harmony</span></h2>
-                    <p>Elevating the culture through movement and community.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-icon">IG</a>
-                        <a href="#" class="social-icon">TT</a>
-                        <a href="#" class="social-icon">YT</a>
-                    </div>
-                </div>
-                
-                <div class="footer-contact">
-                    <h3>Hit Us Up</h3>
-                    <p>123 Rhythm Street<br>Beat City, BC 90210</p>
-                    <p>info@hiphopharmony.com<br>(555) 123-4567</p>
-                </div>
-
-                <div class="footer-form">
-                    <h3>Stay Connected</h3>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Enter your email" required>
-                        <button type="submit" class="btn btn-primary">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Hip Hop Harmony. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
-
